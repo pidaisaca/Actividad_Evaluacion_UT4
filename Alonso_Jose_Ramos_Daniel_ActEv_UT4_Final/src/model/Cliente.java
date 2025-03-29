@@ -1,34 +1,53 @@
 package model;
 import java.util.List;
 
+
 public class Cliente {
 
     private String idCliente;
     private String nombreCliente;
-    private List<String> historialReserva; 
-    private List<String> reservasCliente; 
+    private List<reserva> historialReserva; 
+    private List<reserva> reservasCliente; 
+
 
     // Constructor
-    public Cliente(String idCliente, String nombreCliente, List<String> historialReserva, List<String> reservasCliente) {
+    public Cliente(String idCliente, String nombreCliente, List<reserva> historialReserva, List<reserva> reservasCliente) {
         this.idCliente = idCliente;
         this.nombreCliente = nombreCliente;
         this.historialReserva = historialReserva;
         this.reservasCliente = reservasCliente;
     }
 
-    public String getIdCliente(){
+    // Getters y setters
+    public String getIdCliente() {
         return idCliente;
     }
 
-    public String  getNombreCliente(){
+    public void setIdCliente(String idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public String getNombreCliente() {
         return nombreCliente;
     }
 
-    public List<String> getHistorialReserva(){
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
+
+    public List<reserva> getHistorialReserva() {
         return historialReserva;
     }
 
-    public List<String> getReservaCliente(){
+    public void setHistorialReserva(List<reserva> historialReserva) {
+        this.historialReserva = historialReserva;    
+    }
+
+    public List<reserva> getReservasCliente() {
         return reservasCliente;
+    }
+
+    public void setReservasCliente(List<reserva> reservasCliente) {
+        this.reservasCliente = reservasCliente;
     }
 }
