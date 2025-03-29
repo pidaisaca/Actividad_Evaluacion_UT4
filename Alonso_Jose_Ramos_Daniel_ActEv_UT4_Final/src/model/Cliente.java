@@ -16,5 +16,19 @@ public class Cliente {
         this.reservasCliente = reservasCliente;
     }
 
+    public String getIdCliente(){
+        return idCliente;
+    }
 
+    public String  getNombreCliente(){
+        return nombreCliente;
+    }
+
+    public List<String> getHistorialReserva(){
+        return historialReserva;
+    }
+
+    public List<String> getReservaCliente(){
+        return reservasCliente;
+    }
 }
