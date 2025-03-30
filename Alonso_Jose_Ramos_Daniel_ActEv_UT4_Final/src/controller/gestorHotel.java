@@ -9,6 +9,13 @@ public class gestorHotel {
 
     private ArrayList<Habitacion> habitaciones;
     private ArrayList<Cliente> clientes;
+
+    
+    //constructor para inicializar las listas
+    public gestorHotel(){
+        this.habitaciones = new ArrayList<>();
+        this.clientes = new ArrayList<>();
+    }
     public void annadirHabitacion(Habitacion habitacion) {
         habitaciones.add(habitacion);
     }
@@ -18,10 +25,14 @@ public class gestorHotel {
     }
 
     public void listarClientes() {
-        clientes.forEach(System.out::println);
+        for (Cliente cliente : clientes) {
+            System.out.println(cliente.ClientetoString());
+        }
     }
 
     public void listarHabitaciones() {
-        habitaciones.forEach(System.out::println);
+        for (Habitacion habitacion : habitaciones) {
+            System.out.println(habitacion.toString());
+        }
     }
 }
