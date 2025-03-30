@@ -9,7 +9,6 @@ public class gestorHotel {
 
     private ArrayList<Habitacion> habitaciones;
     private ArrayList<Cliente> clientes;
-
     public void annadirHabitacion(Habitacion habitacion) {
         habitaciones.add(habitacion);
     }

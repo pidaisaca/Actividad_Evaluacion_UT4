@@ -10,39 +10,34 @@ import model.reserva;
 import model.estadoHabitacion;
 import model.tipoHabitacion;
 import java.time.LocalDate;
+import vista.Vista;
 
 public class App {
     public static void main(String[] args) throws Exception {
         
         gestorHotel gestorHotel = new gestorHotel();
         gestorReservas gestorReservas = new gestorReservas();
-        tipoHabitacion INDIVIDUAL = tipoHabitacion.INDIVIDUAL;
-        tipoHabitacion DOBLE = tipoHabitacion.DOBLE;
-        tipoHabitacion SUITE = tipoHabitacion.SUITE;
-        estadoHabitacion DISPONIBLE = estadoHabitacion.DISPONIBLE;
-        estadoHabitacion RESERVADA = estadoHabitacion.RESERVADA;
-        estadoHabitacion OCUPADA = estadoHabitacion.OCUPADA;
         double precioIndividual = 100.0;
         double precioDoble = 200.0;
         double precioSuite = 300.0;
 
         // Crear habitaciones
         
-        Habitacion habitacion1 = new Habitacion(101, INDIVIDUAL, precioIndividual, DISPONIBLE, "Habitacion individual");
-        Habitacion habitacion2 = new Habitacion(102, DOBLE, precioDoble, DISPONIBLE, "Habitacion doble");
-        Habitacion habitacion3 = new Habitacion(103, SUITE, precioSuite, DISPONIBLE, "Habitacion suite");
-        Habitacion habitacion4 = new Habitacion(104, INDIVIDUAL, precioIndividual, DISPONIBLE, "Habitacion individual");
-        Habitacion habitacion5 = new Habitacion(105, DOBLE, precioDoble, DISPONIBLE, "Habitacion doble");
-        Habitacion habitacion6 = new Habitacion(201, SUITE, precioSuite, DISPONIBLE, "Habitacion suite");
-        Habitacion habitacion7 = new Habitacion(202, INDIVIDUAL, precioIndividual, DISPONIBLE, "Habitacion individual");
-        Habitacion habitacion8 = new Habitacion(203, DOBLE, precioDoble, DISPONIBLE, "Habitacion doble");
-        Habitacion habitacion9 = new Habitacion(204, SUITE, precioSuite, DISPONIBLE, "Habitacion suite");
-        Habitacion habitacion10 = new Habitacion(205, INDIVIDUAL, precioIndividual, DISPONIBLE, "Habitacion individual");
-        Habitacion habitacion11 = new Habitacion(301, DOBLE, precioDoble, DISPONIBLE, "Habitacion doble");
-        Habitacion habitacion12 = new Habitacion(302, SUITE, precioSuite, DISPONIBLE, "Habitacion suite");
-        Habitacion habitacion13 = new Habitacion(303, INDIVIDUAL, precioIndividual, RESERVADA, "Habitacion individual");
-        Habitacion habitacion14 = new Habitacion(304, DOBLE, precioDoble, RESERVADA, "Habitacion doble");
-        Habitacion habitacion15 = new Habitacion(305, SUITE, precioSuite, RESERVADA, "Habitacion suite");
+        Habitacion habitacion1 = new Habitacion(101, tipoHabitacion.INDIVIDUAL, precioIndividual, estadoHabitacion.DISPONIBLE, "Habitacion individual");
+        Habitacion habitacion2 = new Habitacion(102, tipoHabitacion.DOBLE, precioDoble, estadoHabitacion.DISPONIBLE, "Habitacion doble");
+        Habitacion habitacion3 = new Habitacion(103, tipoHabitacion.SUITE, precioSuite, estadoHabitacion.DISPONIBLE, "Habitacion suite");
+        Habitacion habitacion4 = new Habitacion(104, tipoHabitacion.INDIVIDUAL, precioIndividual, estadoHabitacion.DISPONIBLE, "Habitacion individual");
+        Habitacion habitacion5 = new Habitacion(105, tipoHabitacion.DOBLE, precioDoble, estadoHabitacion.DISPONIBLE, "Habitacion doble");
+        Habitacion habitacion6 = new Habitacion(201, tipoHabitacion.SUITE, precioSuite, estadoHabitacion.DISPONIBLE, "Habitacion suite");
+        Habitacion habitacion7 = new Habitacion(202, tipoHabitacion.INDIVIDUAL, precioIndividual, estadoHabitacion.DISPONIBLE, "Habitacion individual");
+        Habitacion habitacion8 = new Habitacion(203, tipoHabitacion.DOBLE, precioDoble, estadoHabitacion.DISPONIBLE, "Habitacion doble");
+        Habitacion habitacion9 = new Habitacion(204, tipoHabitacion.SUITE, precioSuite, estadoHabitacion.DISPONIBLE, "Habitacion suite");
+        Habitacion habitacion10 = new Habitacion(205, tipoHabitacion.INDIVIDUAL, precioIndividual, estadoHabitacion.DISPONIBLE, "Habitacion individual");
+        Habitacion habitacion11 = new Habitacion(301, tipoHabitacion.DOBLE, precioDoble, estadoHabitacion.DISPONIBLE, "Habitacion doble");
+        Habitacion habitacion12 = new Habitacion(302, tipoHabitacion.SUITE, precioSuite, estadoHabitacion.DISPONIBLE, "Habitacion suite");
+        Habitacion habitacion13 = new Habitacion(303, tipoHabitacion.INDIVIDUAL, precioIndividual, estadoHabitacion.RESERVADA, "Habitacion individual");
+        Habitacion habitacion14 = new Habitacion(304, tipoHabitacion.DOBLE, precioDoble, estadoHabitacion.RESERVADA, "Habitacion doble");
+        Habitacion habitacion15 = new Habitacion(305, tipoHabitacion.SUITE, precioSuite, estadoHabitacion.RESERVADA, "Habitacion suite");
 
         gestorHotel.annadirHabitacion(habitacion1);
         gestorHotel.annadirHabitacion(habitacion2);
@@ -59,6 +54,7 @@ public class App {
         gestorHotel.annadirHabitacion(habitacion13);
         gestorHotel.annadirHabitacion(habitacion14);
         gestorHotel.annadirHabitacion(habitacion15);
+
 
         // Crear clientes, reservas y historial. Cliente1 tendra reservas al maximo y un historial. Cliente2 estará sin reservas
 
@@ -85,12 +81,12 @@ public class App {
 
         while(opcion1 != 4){
             
-            System.out.println("Bienvenido al Gloria Palace Resort");
-            System.out.println("¿Que desea hacer?");
-            System.out.println("1. Listar habitaciones o clientes");
-            System.out.println("2. Cambiar el estado de una habitacion");
-            System.out.println("3. Ver reservas de cliente");
-            System.out.println("4. Salir");
+            Vista.imprimir("Bienvenido al Gloria Palace Resort");
+            Vista.imprimir("¿Que desea hacer?");
+            Vista.imprimir("1. Listar habitaciones o clientes");
+            Vista.imprimir("2. Cambiar el estado de una habitacion");
+            Vista.imprimir("3. Ver reservas de cliente");
+            Vista.imprimir("4. Salir");
             Scanner scanner = new Scanner(System.in);
             opcion1 = scanner.nextInt();
 
@@ -106,11 +102,11 @@ public class App {
                     break;
     
                 case 4:
-                    System.out.println("Adios");
+                Vista.imprimir("Adios");
                     break;
                     
                 default:
-                    System.out.println("Opcion no valida");
+                Vista.imprimir("Opcion no valida");
                     break;
             }
         }

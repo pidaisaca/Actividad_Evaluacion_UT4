@@ -1,6 +1,7 @@
 package controller;
 
 import model.reserva;
+import vista.Vista;
 import model.Cliente;   
 
 public class gestorReservas {
@@ -27,7 +28,7 @@ public class gestorReservas {
 
     public void controlMaxReservas(Cliente cliente) {
         if (cliente.getReservasCliente().size() >= 3) {
-            System.out.println("El cliente " + cliente.getNombreCliente() + " ha superado el maximo de reservas permitidas.");
+            Vista.imprimir("El cliente " + cliente.getNombreCliente() + " ha superado el maximo de reservas permitidas.");
         }
     }
 }
