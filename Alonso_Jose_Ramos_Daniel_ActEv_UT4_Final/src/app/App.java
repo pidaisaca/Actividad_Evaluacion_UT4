@@ -67,6 +67,8 @@ public class App {
         List<reserva> historialCliente1 = new ArrayList<reserva>();
         List<reserva> historialCliente2 = new ArrayList<reserva>();
 
+        
+
         reserva reservaCliente1_1 = new reserva("1", null, null, precioSuite, habitacion15);
         reserva reservaCliente1_2 = new reserva("2", null, null, precioDoble, habitacion14);
         reserva reservaCliente1_3 = new reserva("3", null, null, precioIndividual, habitacion13);
@@ -83,29 +85,103 @@ public class App {
 
         int opcion1 = 0;
 
-        while(opcion1 != 4){
+        while(opcion1 != 3){
             
             System.out.println("Bienvenido al Gloria Palace Resort");
             System.out.println("¿Que desea hacer?");
-            System.out.println("1. Listar habitaciones o clientes");
-            System.out.println("2. Cambiar el estado de una habitacion");
-            System.out.println("3. Ver reservas de cliente");
-            System.out.println("4. Salir");
+            System.out.println("1. Opciones de cliente");
+            System.out.println("2. Opciones de habitaciones");
+           
+            System.out.println("3. Salir");
             Scanner scanner = new Scanner(System.in);
             opcion1 = scanner.nextInt();
 
             switch (opcion1) {
                 case 1:
-                    
+                    int opcion2 = 0;    
+                    while (opcion2 != 4) {
+                        System.out.println("¿Que desea hacer?");
+                        System.out.println("1. Listar clientes");
+                        System.out.println("2. Ver reservas de un cliente");
+                        System.out.println("3. Ver historial de un cliente");
+                        System.out.println("4. Salir");
+                        opcion2 = scanner.nextInt();
+                        switch (opcion2) {
+                            case 1:
+                                gestorHotel.listarClientes();
+                                break;
+                            case 2:
+                                
+                                break;
+                            case 3:
+                                
+                                break;
+                            case 4:
+                                
+                                break;
+                            default:
+                                System.out.println("Opcion no valida");
+                                break;
+                        }
+                    }
                     break;
                 case 2:
-                    
+                    int opcion3 = 0;    
+                    while (opcion3 != 5) {
+                        System.out.println("¿Que desea hacer?");
+                        System.out.println("1. Listar habitaciones");
+                        System.out.println("2. Reservar habitacion");
+                        System.out.println("3. Cancelar reserva");
+                        System.out.println("4. Buscar habitacion");
+                        System.out.println("5. Salir");
+                        opcion3 = scanner.nextInt();
+                        switch (opcion3) {
+                            case 1:
+                                gestorHotel.listarHabitaciones();
+                                break;
+                            case 2:
+                                
+                                break;
+                            case 3:
+                                
+                                break;
+                            case 4:
+                                int opcion3_1 = 0;    
+                                while (opcion3_1 != 4) {
+                                    System.out.println("¿Que desea hacer?");
+                                    System.out.println("1. Buscar por numero");
+                                    System.out.println("2. Buscar por tipo");
+                                    System.out.println("3. Buscar por estado");
+                                    System.out.println("4. Salir");
+                                    opcion3_1 = scanner.nextInt();
+                                    switch (opcion3_1) {
+                                        case 1:
+                                            
+                                            break;
+                                        case 2:
+                                            
+                                            break;
+                                        case 3:
+                                            
+                                            break;
+                                        case 4:
+                                            break;
+                                        default:
+                                            System.out.println("Opcion no valida");
+                                            break;
+                                    }
+                                }
+                                break;
+                            case 5:
+
+                                break;
+                            default:
+                                System.out.println("Opcion no valida");
+                                break;
+                        }
+                    }
                     break;
                 case 3:
-                    
-                    break;
-    
-                case 4:
                     System.out.println("Adios");
                     break;
                     

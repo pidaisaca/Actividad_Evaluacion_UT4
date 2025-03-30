@@ -1,16 +1,17 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class reserva {
 
     private String idReserva;
-    private Date fechaCheckIn;
-    private Date fechaCheckOut;
+    private LocalDate fechaCheckIn;
+    private LocalDate fechaCheckOut;
     private double totalReserva;
     private Habitacion habitacionReservada;
 
-    public reserva(String idReserva, Date fechaCheckIn, Date fechaCheckOut, double totalReserva, Habitacion habitacionReservada) {
+    public reserva(String idReserva, LocalDate fechaCheckIn, LocalDate fechaCheckOut, double totalReserva, Habitacion habitacionReservada) {
         this.idReserva = idReserva;
         this.fechaCheckIn = fechaCheckIn;
         this.fechaCheckOut = fechaCheckOut;
@@ -27,19 +28,19 @@ public void setIdReserva(String idReserva) {
     this.idReserva = idReserva;
 }
 
-public Date getFechaCheckIn() {
+public LocalDate getFechaCheckIn() {
     return fechaCheckIn;
 }
 
-public void setFechaCheckIn(Date fechaCheckIn) {
+public void setFechaCheckIn(LocalDate fechaCheckIn) {
     this.fechaCheckIn = fechaCheckIn;
 }
 
-public void setFechaCheckOut(Date fechaCheckOut) {
+public void setFechaCheckOut(LocalDate fechaCheckOut) {
     this.fechaCheckOut = fechaCheckOut;
 }
 
-public Date getFechaCheckOut() {
+public LocalDate getFechaCheckOut() {
     return fechaCheckOut;
 }
 
