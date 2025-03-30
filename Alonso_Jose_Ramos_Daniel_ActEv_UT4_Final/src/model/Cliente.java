@@ -50,4 +50,8 @@ public class Cliente {
     public void setReservasCliente(List<reserva> reservasCliente) {
         this.reservasCliente = reservasCliente;
     }
+
+    public String ClientetoString() {
+        return "ID: " + idCliente + " Nombre: " + nombreCliente + " Reservas: " + reservasCliente + " Historial: " + historialReserva;
+    }
 }

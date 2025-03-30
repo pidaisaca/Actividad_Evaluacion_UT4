@@ -33,4 +33,9 @@ public class Habitacion {
     public String getDescripcion(){
         return descripcion;
     }
+
+    public String toString() {
+        return "Habitacion [numeroHabitacion=" + numeroHabitacion + ", tipo=" + tipo + ", precioNoche=" + precioNoche
+                + ", estado=" + estado + ", descripcion=" + descripcion + "]";
+    }
 }

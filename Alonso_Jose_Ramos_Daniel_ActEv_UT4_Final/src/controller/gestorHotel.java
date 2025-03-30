@@ -19,10 +19,14 @@ public class gestorHotel {
     }
 
     public void listarClientes() {
-        clientes.forEach(System.out::println);
+        for (Cliente cliente : clientes) {
+            System.out.println(cliente.ClientetoString());
+        }
     }
 
     public void listarHabitaciones() {
-        habitaciones.forEach(System.out::println);
+        for (Habitacion habitacion : habitaciones) {
+            System.out.println(habitacion.toString());
+        }
     }
 }
