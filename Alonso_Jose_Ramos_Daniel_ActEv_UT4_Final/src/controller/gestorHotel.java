@@ -29,4 +29,22 @@ public class gestorHotel {
             System.out.println(habitacion.toString());
         }
     }
+
+    public Habitacion buscarHabitacion(int numHabitacion) {
+        for (Habitacion habitacion : habitaciones) {
+            if (habitacion.getNum() == numHabitacion) {
+                return habitacion;
+            }
+        }
+        return null;
+    }
+
+    public Cliente buscarCliente(String dni) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getIdCliente().equals(dni)) {
+                return cliente;
+            }
+        }
+        return null;
+    }
 }

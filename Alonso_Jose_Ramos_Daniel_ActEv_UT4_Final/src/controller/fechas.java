@@ -28,5 +28,11 @@ public class fechas {
         reserva.setFechaCheckOut(fechaCheckOut);
     }
 
+    public LocalDate preguntarFecha(int dia, int mes, int anio) {
+        
+        LocalDate fechaReserva = LocalDate.of(anio, mes, dia);
+        return fechaReserva;
+    }
+
 
 }
