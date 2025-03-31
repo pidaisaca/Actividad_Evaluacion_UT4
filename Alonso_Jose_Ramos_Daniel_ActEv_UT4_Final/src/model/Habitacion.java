@@ -18,7 +18,6 @@ public class Habitacion {
     }
 
     public int getNum() {
-
         return numeroHabitacion;
     }
     public tipoHabitacion getTipo(){

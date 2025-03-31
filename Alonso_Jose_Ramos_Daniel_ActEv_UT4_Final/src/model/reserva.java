@@ -5,13 +5,13 @@ import java.util.Date;
 
 public class reserva {
 
-    private String idReserva;
+    private int idReserva;
     private LocalDate fechaCheckIn;
     private LocalDate fechaCheckOut;
     private double totalReserva;
     private Habitacion habitacionReservada;
 
-    public reserva(String idReserva, LocalDate fechaCheckIn, LocalDate fechaCheckOut, double totalReserva, Habitacion habitacionReservada) {
+    public reserva(int idReserva, LocalDate fechaCheckIn, LocalDate fechaCheckOut, double totalReserva, Habitacion habitacionReservada) {
         this.idReserva = idReserva;
         this.fechaCheckIn = fechaCheckIn;
         this.fechaCheckOut = fechaCheckOut;
@@ -20,11 +20,11 @@ public class reserva {
     }
 
 
-public String getIdReserva() {
+public int getIdReserva() {
     return idReserva;
 }
 
-public void setIdReserva(String idReserva) {
+public void setIdReserva(int idReserva) {
     this.idReserva = idReserva;
 }
 

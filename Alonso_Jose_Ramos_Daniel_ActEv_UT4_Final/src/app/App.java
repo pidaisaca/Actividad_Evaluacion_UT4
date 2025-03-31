@@ -30,11 +30,11 @@ public class App {
         
         Habitacion habitacion1 = new Habitacion(101, INDIVIDUAL, precioIndividual, DISPONIBLE, "Habitacion individual");
         Habitacion habitacion2 = new Habitacion(102, DOBLE, precioDoble, DISPONIBLE, "Habitacion doble");
-        Habitacion habitacion3 = new Habitacion(103, SUITE, precioSuite, DISPONIBLE, "Habitacion suite");
+        Habitacion habitacion3 = new Habitacion(103, SUITE, precioSuite, OCUPADA, "Habitacion suite");
         Habitacion habitacion4 = new Habitacion(104, INDIVIDUAL, precioIndividual, DISPONIBLE, "Habitacion individual");
         Habitacion habitacion5 = new Habitacion(105, DOBLE, precioDoble, DISPONIBLE, "Habitacion doble");
         Habitacion habitacion6 = new Habitacion(201, SUITE, precioSuite, DISPONIBLE, "Habitacion suite");
-        Habitacion habitacion7 = new Habitacion(202, INDIVIDUAL, precioIndividual, DISPONIBLE, "Habitacion individual");
+        Habitacion habitacion7 = new Habitacion(202, INDIVIDUAL, precioIndividual, OCUPADA, "Habitacion individual");
         Habitacion habitacion8 = new Habitacion(203, DOBLE, precioDoble, DISPONIBLE, "Habitacion doble");
         Habitacion habitacion9 = new Habitacion(204, SUITE, precioSuite, DISPONIBLE, "Habitacion suite");
         Habitacion habitacion10 = new Habitacion(205, INDIVIDUAL, precioIndividual, DISPONIBLE, "Habitacion individual");
@@ -69,9 +69,9 @@ public class App {
 
         
 
-        reserva reservaCliente1_1 = new reserva("1", null, null, precioSuite, habitacion15);
-        reserva reservaCliente1_2 = new reserva("2", null, null, precioDoble, habitacion14);
-        reserva reservaCliente1_3 = new reserva("3", null, null, precioIndividual, habitacion13);
+        reserva reservaCliente1_1 = new reserva(1, null, null, precioSuite, habitacion15);
+        reserva reservaCliente1_2 = new reserva(2, null, null, precioDoble, habitacion14);
+        reserva reservaCliente1_3 = new reserva(3, null, null, precioIndividual, habitacion13);
 
         reservasCliente1.add(reservaCliente1_1);
         reservasCliente1.add(reservaCliente1_2);
@@ -140,7 +140,23 @@ public class App {
                                 gestorHotel.listarHabitaciones();
                                 break;
                             case 2:
-                                
+                                System.out.println("¿Que habitacion desea reservar? Escribe el numero de la habitacion");
+                                int numeroHabitacion = scanner.nextInt();
+                                Habitacion habitacionReservada = gestorHotel.buscarHabitacion(numeroHabitacion);
+                                if (habitacionReservada == null) {
+                                    System.out.println("Habitacion no encontrada");
+                                    break;
+                                }
+                                gestorReservas.controlEstadoHabitacion(habitacionReservada);
+                                System.out.println("¿Que cliente desea reservar la habitacion? Escribe el numero del cliente");
+                                String numeroCliente = scanner.next();
+                                Cliente cliente = gestorHotel.buscarCliente(numeroCliente);
+                                if (cliente == null) {
+                                    System.out.println("Cliente no encontrado");
+                                    break;
+                                }
+                                gestorReservas.controlMaxReservas(cliente);
+                                gestorReservas.crearReserva(cliente, habitacionReservada);
                                 break;
                             case 3:
                                 
@@ -148,7 +164,7 @@ public class App {
                             case 4:
                                 int opcion3_1 = 0;    
                                 while (opcion3_1 != 4) {
-                                    System.out.println("¿Que desea hacer?");
+                                    System.out.println("¿Como desea buscar?");
                                     System.out.println("1. Buscar por numero");
                                     System.out.println("2. Buscar por tipo");
                                     System.out.println("3. Buscar por estado");
@@ -189,8 +205,10 @@ public class App {
                     System.out.println("Opcion no valida");
                     break;
             }
+            scanner.close();
         }
         
         
     }
+    
 }
