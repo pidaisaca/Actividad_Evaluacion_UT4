@@ -7,6 +7,7 @@ import model.reserva;
 import view.Vista;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class gestorReservas {
 
@@ -22,8 +23,14 @@ public class gestorReservas {
         
     }
 */
-    public void cancelarReserva() {
-
+    public void cancelarReserva(Habitacion cancelarReserva) {
+        if(cancelarReserva.getEstado() == estadoHabitacion.RESERVADA){
+            cancelarReserva.setEstado(estadoHabitacion.DISPONIBLE);
+            Vista.imprimir("Se ha cancelado la reserva. La habitacion "+cancelarReserva.getNum()+" ahora está disponible");
+        }
+        else{
+            Vista.imprimir("La habitacion no se encuentra reservada");
+        }
     }
 
     public void historialReserva() {

@@ -4,8 +4,8 @@ public class Habitacion {
     private final int numeroHabitacion;
     private final tipoHabitacion tipo;
     private final double precioNoche;
-    private final estadoHabitacion estado;
-    private final String descripcion;
+    private  estadoHabitacion estado;
+    private  String descripcion;
 
     public Habitacion(int numeroHabitacion, tipoHabitacion tipo, double precioNoche, estadoHabitacion estado,
             String descripcion) {
@@ -33,8 +33,12 @@ public class Habitacion {
         return descripcion;
     }
 
+    public void setEstado(estadoHabitacion nuevoEstado){
+        this.estado = nuevoEstado;
+    }
+
     public String toString() {
-        return "Habitacion [numeroHabitacion=" + numeroHabitacion + ", tipo=" + tipo + ", precioNoche=" + precioNoche
-                + ", estado=" + estado + ", descripcion=" + descripcion + "]";
+        return "Habitacion Nº " + numeroHabitacion + " | Tipo: " + tipo + " | Precio por noche: " + precioNoche
+                + "€ | Estado: " + estado + "| Descripcion: " + descripcion;
     }
 }

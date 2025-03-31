@@ -13,7 +13,7 @@ import java.time.LocalDate;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        
+
         gestorHotel gestorHotel = new gestorHotel();
         gestorReservas gestorReservas = new gestorReservas();
         tipoHabitacion INDIVIDUAL = tipoHabitacion.INDIVIDUAL;
@@ -27,7 +27,7 @@ public class App {
         double precioSuite = 300.0;
 
         // Crear habitaciones
-        
+
         Habitacion habitacion1 = new Habitacion(101, INDIVIDUAL, precioIndividual, DISPONIBLE, "Habitacion individual");
         Habitacion habitacion2 = new Habitacion(102, DOBLE, precioDoble, DISPONIBLE, "Habitacion doble");
         Habitacion habitacion3 = new Habitacion(103, SUITE, precioSuite, OCUPADA, "Habitacion suite");
@@ -60,14 +60,13 @@ public class App {
         gestorHotel.annadirHabitacion(habitacion14);
         gestorHotel.annadirHabitacion(habitacion15);
 
-        // Crear clientes, reservas y historial. Cliente1 tendra reservas al maximo y un historial. Cliente2 estará sin reservas
+        // Crear clientes, reservas y historial. Cliente1 tendra reservas al maximo y un
+        // historial. Cliente2 estará sin reservas
 
         List<reserva> reservasCliente1 = new ArrayList<reserva>();
         List<reserva> reservasCliente2 = new ArrayList<reserva>();
         List<reserva> historialCliente1 = new ArrayList<reserva>();
         List<reserva> historialCliente2 = new ArrayList<reserva>();
-
-        
 
         reserva reservaCliente1_1 = new reserva(1, null, null, precioSuite, habitacion15);
         reserva reservaCliente1_2 = new reserva(2, null, null, precioDoble, habitacion14);
@@ -84,21 +83,21 @@ public class App {
         gestorHotel.annadirCliente(cliente2);
 
         int opcion1 = 0;
+        int numeroHabitacion = 0;
+        while (opcion1 != 3) {
 
-        while(opcion1 != 3){
-            
             Vista.imprimir("Bienvenido al Gloria Palace Resort");
             Vista.imprimir("¿Que desea hacer?");
             Vista.imprimir("1. Opciones de cliente");
             Vista.imprimir("2. Opciones de habitaciones");
-           
+
             Vista.imprimir("3. Salir");
             Scanner scanner = new Scanner(System.in);
             opcion1 = scanner.nextInt();
 
             switch (opcion1) {
                 case 1:
-                    int opcion2 = 0;    
+                    int opcion2 = 0;
                     while (opcion2 != 4) {
                         Vista.imprimir("¿Que desea hacer?");
                         Vista.imprimir("1. Listar clientes");
@@ -111,13 +110,13 @@ public class App {
                                 gestorHotel.listarClientes();
                                 break;
                             case 2:
-                                
+
                                 break;
                             case 3:
-                                
+
                                 break;
                             case 4:
-                                
+
                                 break;
                             default:
                                 Vista.imprimir("Opcion no valida");
@@ -126,7 +125,7 @@ public class App {
                     }
                     break;
                 case 2:
-                    int opcion3 = 0;    
+                    int opcion3 = 0;
                     while (opcion3 != 5) {
                         Vista.imprimir("¿Que desea hacer?");
                         Vista.imprimir("1. Listar habitaciones");
@@ -141,14 +140,17 @@ public class App {
                                 break;
                             case 2:
                                 Vista.imprimir("¿Que habitacion desea reservar? Escribe el numero de la habitacion");
-                                int numeroHabitacion = scanner.nextInt();
+                                numeroHabitacion = scanner.nextInt();
                                 Habitacion habitacionReservada = gestorHotel.buscarHabitacion(numeroHabitacion);
                                 if (habitacionReservada == null) {
                                     Vista.imprimir("Habitacion no encontrada");
                                     break;
                                 }
-                                gestorReservas.controlEstadoHabitacion(habitacionReservada);
-                                Vista.imprimir("¿Que cliente desea reservar la habitacion? Escribe el numero del cliente");
+                               if (!gestorReservas.controlEstadoHabitacion(habitacionReservada)){
+                                break;
+                               }
+                                Vista.imprimir(
+                                        "¿Que cliente desea reservar la habitacion? Escribe el numero del cliente");
                                 String numeroCliente = scanner.next();
                                 Cliente cliente = gestorHotel.buscarCliente(numeroCliente);
                                 if (cliente == null) {
@@ -156,13 +158,20 @@ public class App {
                                     break;
                                 }
                                 gestorReservas.controlMaxReservas(cliente);
-                            //    gestorReservas.crearReserva(cliente, habitacionReservada);
+                            //     gestorReservas.crearReserva(cliente, habitacionReservada);
                                 break;
                             case 3:
-                                
+                                Vista.imprimir("Introduzca el numero de la habitación cuya reserva desea cancelar");
+                                numeroHabitacion = scanner.nextInt();
+                                Habitacion cancelarReserva = gestorHotel.buscarHabitacion(numeroHabitacion);
+                                if (cancelarReserva == null){
+                                    Vista.imprimir("Habitacion no encontrada");
+                                    break;
+                                }
+                                gestorReservas.cancelarReserva(cancelarReserva);
                                 break;
                             case 4:
-                                int opcion3_1 = 0;    
+                                int opcion3_1 = 0;
                                 while (opcion3_1 != 4) {
                                     Vista.imprimir("¿Como desea buscar?");
                                     Vista.imprimir("1. Buscar por numero");
@@ -172,13 +181,13 @@ public class App {
                                     opcion3_1 = scanner.nextInt();
                                     switch (opcion3_1) {
                                         case 1:
-                                            
+
                                             break;
                                         case 2:
-                                            
+
                                             break;
                                         case 3:
-                                            
+
                                             break;
                                         case 4:
                                             break;
@@ -200,15 +209,14 @@ public class App {
                 case 3:
                     Vista.imprimir("Adios");
                     break;
-                    
+
                 default:
                     Vista.imprimir("Opcion no valida");
                     break;
             }
             scanner.close();
         }
-        
-        
+
     }
-    
+
 }
