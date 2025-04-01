@@ -1,7 +1,6 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class reserva {
 
@@ -68,6 +67,10 @@ public Cliente getCliente() {
 
 public void setCliente(Cliente cliente) {
     this.cliente = cliente;
+}
+
+public String toString() {
+    return "Reserva " + idReserva + ": " + fechaCheckIn + " - " + fechaCheckOut + ", Habitación " + habitacionReservada.getNum() + ", Precio: " + totalReserva + "€";
 }
 
 }
