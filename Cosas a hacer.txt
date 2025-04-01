@@ -1,3 +1,3 @@
-- Cambiar el metodo de cancelar reserva para que elimine de la lista del cliente la reserva (añadir a las preguntas el cliente  y la ID de la reserva)
+- Cambiar el metodo de cancelar reserva para que elimine de la lista del cliente la reserva (añadir a las preguntas el cliente  y la ID de la reserva) 
 - Mirar simbolo del euro
-- Cambiar la presentacion al crear la reserva exitosamente (ej: Reserva finalizada para el cliente x, en la habitación x y con codigo de ID x)
+- (HECHO!)Cambiar la presentacion al crear la reserva exitosamente (ej: Reserva finalizada para el cliente x, en la habitación x y con codigo de ID x)(HECHO!)
