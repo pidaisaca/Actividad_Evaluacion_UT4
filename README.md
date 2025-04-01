@@ -4,7 +4,7 @@ El sistema debe permitir gestionar habitaciones, clientes y reservas.
 
 ## Webgrafía
 
-
+prueba
 
 ## Estructura del proyecto
 Para este proyecto nos centraremos en las carpetas contenidas en el source (src).
