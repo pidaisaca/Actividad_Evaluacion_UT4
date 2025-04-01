@@ -85,15 +85,16 @@ public class App {
         int opcion1 = 0;
         int numeroHabitacion = 0;
         String busqueda = null;
+        Scanner scanner = new Scanner(System.in);
         while (opcion1 != 3) {
-
+        
             Vista.imprimir("Bienvenido al Gloria Palace Resort");
             Vista.imprimir("¿Que desea hacer?");
             Vista.imprimir("1. Opciones de cliente");
             Vista.imprimir("2. Opciones de habitaciones");
 
             Vista.imprimir("3. Salir");
-            Scanner scanner = new Scanner(System.in);
+          
             opcion1 = scanner.nextInt();
 
             switch (opcion1) {
@@ -228,7 +229,8 @@ public class App {
                                         }
                                    
                                             break;
-                                        case 4:
+                                        case 5:
+                                        Vista.imprimir("Cerrando Opciones de habitacion");
                                             break;
                                         default:
                                             Vista.imprimir("Opcion no valida");
@@ -246,15 +248,15 @@ public class App {
                     }
                     break;
                 case 3:
-                    Vista.imprimir("Adios");
+                    Vista.imprimir("Cerrando Sesion");
                     break;
 
                 default:
                     Vista.imprimir("Opcion no valida");
                     break;
             }
-            scanner.close();
         }
+        scanner.close();
 
     }
 
