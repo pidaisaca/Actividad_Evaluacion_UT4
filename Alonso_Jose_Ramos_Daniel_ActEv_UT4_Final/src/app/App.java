@@ -10,7 +10,7 @@ import model.reserva;
 import model.estadoHabitacion;
 import model.tipoHabitacion;
 import java.time.LocalDate;
-
+//Tareas a hacer: crear metodos de busqueda de habitaciones
 public class App {
     public static void main(String[] args) throws Exception {
 
@@ -84,6 +84,7 @@ public class App {
 
         int opcion1 = 0;
         int numeroHabitacion = 0;
+        String busqueda = null;
         while (opcion1 != 3) {
 
             Vista.imprimir("Bienvenido al Gloria Palace Resort");
@@ -181,13 +182,51 @@ public class App {
                                     opcion3_1 = scanner.nextInt();
                                     switch (opcion3_1) {
                                         case 1:
-
+                                        Vista.imprimir("Introduce el numero de la habitacion");
+                                        numeroHabitacion = scanner.nextInt();
+                                        Habitacion buscarPorNumero = gestorHotel.buscarHabitacion(numeroHabitacion);
+                                        Vista.imprimir(buscarPorNumero.toString());
                                             break;
                                         case 2:
-
+                                        Vista.imprimir("Introduce el tipo de habitacion");
+                                        Vista.imprimir("INDIVIDUAL");
+                                        Vista.imprimir("DOBLE");
+                                        Vista.imprimir("SUITE");
+                                        busqueda = scanner.next().toUpperCase();
+                                        try{
+                                            tipoHabitacion tipoBuscado = tipoHabitacion.valueOf(busqueda);
+                                            ArrayList<Habitacion> buscador = gestorHotel.buscarPorTipo(tipoBuscado);
+                                            Vista.imprimir("Habitaciones tipo "+tipoBuscado);
+                                            for(Habitacion habitacion : buscador){
+                                                Vista.imprimir(habitacion.toString());
+                                            }
+                                        }catch(IllegalArgumentException e){
+                                            Vista.imprimir("Tipo invalido. Los tipos permitidos son:");
+                                            Vista.imprimir("INDIVIDUAL");
+                                            Vista.imprimir("DOBLE");
+                                            Vista.imprimir("SUITE");
+                                        }
                                             break;
                                         case 3:
-
+                                        Vista.imprimir("Introduce el estado de  la habitacion");
+                                        Vista.imprimir("DISPONIBLE");
+                                        Vista.imprimir("OCUPADA");
+                                        Vista.imprimir("RESERVADA");
+                                        busqueda = scanner.next().toUpperCase();
+                                        try{
+                                            estadoHabitacion estadoBuscado = estadoHabitacion.valueOf(busqueda);
+                                            ArrayList<Habitacion> buscador = gestorHotel.buscarPorEstado(estadoBuscado);
+                                            Vista.imprimir("Habitaciones "+estadoBuscado+"S");
+                                            for (Habitacion habitacion : buscador){
+                                                Vista.imprimir(habitacion.toString());
+                                            }
+                                        } catch(IllegalArgumentException e){
+                                            Vista.imprimir("Estado invalido. Los estados permitidos son:");
+                                            Vista.imprimir("DISPONIBLE");
+                                            Vista.imprimir("OCUPADA");
+                                            Vista.imprimir("RESERVADA");
+                                        }
+                                   
                                             break;
                                         case 4:
                                             break;
