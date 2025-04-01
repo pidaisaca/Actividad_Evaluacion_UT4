@@ -10,7 +10,7 @@ import model.reserva;
 import model.estadoHabitacion;
 import model.tipoHabitacion;
 import java.time.LocalDate;
-
+//Tareas a hacer: crear metodos de busqueda de habitaciones
 public class App {
     public static void main(String[] args) throws Exception {
 
@@ -68,31 +68,33 @@ public class App {
         List<reserva> historialCliente1 = new ArrayList<reserva>();
         List<reserva> historialCliente2 = new ArrayList<reserva>();
 
-        reserva reservaCliente1_1 = new reserva(1, null, null, precioSuite, habitacion15);
-        reserva reservaCliente1_2 = new reserva(2, null, null, precioDoble, habitacion14);
-        reserva reservaCliente1_3 = new reserva(3, null, null, precioIndividual, habitacion13);
+        Cliente cliente1 = new Cliente("1", "Javier", reservasCliente1, historialCliente1);
+        Cliente cliente2 = new Cliente("2", "Alba", reservasCliente2, historialCliente2);
+
+        reserva reservaCliente1_1 = new reserva(1, LocalDate.of(2025, 6, 1), LocalDate.of(2025, 7, 1), precioSuite, cliente1, habitacion15);
+        reserva reservaCliente1_2 = new reserva(2, null, null, precioDoble, cliente1, habitacion14);
+        reserva reservaCliente1_3 = new reserva(3, null, null, precioIndividual, cliente1, habitacion13);
 
         reservasCliente1.add(reservaCliente1_1);
         reservasCliente1.add(reservaCliente1_2);
         reservasCliente1.add(reservaCliente1_3);
-
-        Cliente cliente1 = new Cliente("1", "Javier", reservasCliente1, historialCliente1);
-        Cliente cliente2 = new Cliente("2", "Alba", reservasCliente2, historialCliente2);
 
         gestorHotel.annadirCliente(cliente1);
         gestorHotel.annadirCliente(cliente2);
 
         int opcion1 = 0;
         int numeroHabitacion = 0;
+        String busqueda = null;
+        Scanner scanner = new Scanner(System.in);
         while (opcion1 != 3) {
-
+        
             Vista.imprimir("Bienvenido al Gloria Palace Resort");
             Vista.imprimir("¿Que desea hacer?");
             Vista.imprimir("1. Opciones de cliente");
             Vista.imprimir("2. Opciones de habitaciones");
 
             Vista.imprimir("3. Salir");
-            Scanner scanner = new Scanner(System.in);
+          
             opcion1 = scanner.nextInt();
 
             switch (opcion1) {
@@ -110,10 +112,16 @@ public class App {
                                 gestorHotel.listarClientes();
                                 break;
                             case 2:
-
+                                Vista.imprimir("¿De que cliente desea ver sus reservas? Escriba su ID");
+                                String id_reservas = scanner.next();
+                                Cliente clienteReservas = gestorHotel.buscarCliente(id_reservas);
+                                gestorReservas.reservasActivas(clienteReservas);
                                 break;
                             case 3:
-
+                                Vista.imprimir("¿De que cliente desea ver sus reservas? Escriba su ID");
+                                String id_historial = scanner.next();
+                                Cliente clienteHistorial = gestorHotel.buscarCliente(id_historial);
+                                gestorReservas.historialReserva(clienteHistorial);
                                 break;
                             case 4:
 
@@ -150,15 +158,19 @@ public class App {
                                 break;
                                }
                                 Vista.imprimir(
-                                        "¿Que cliente desea reservar la habitacion? Escribe el numero del cliente");
+                                "¿Que cliente desea reservar la habitacion? Escribe el numero del cliente");
                                 String numeroCliente = scanner.next();
                                 Cliente cliente = gestorHotel.buscarCliente(numeroCliente);
                                 if (cliente == null) {
                                     Vista.imprimir("Cliente no encontrado");
                                     break;
                                 }
-                                gestorReservas.controlMaxReservas(cliente);
-                            //     gestorReservas.crearReserva(cliente, habitacionReservada);
+                                if (gestorReservas.controlMaxReservas(cliente)) {
+                                    Vista.imprimir("El cliente " + cliente.getNombreCliente() + " ha superado el maximo de reservas permitidas.");
+                                    break;
+                                } else {
+                                    gestorReservas.crearReserva(cliente, habitacionReservada);
+                                }
                                 break;
                             case 3:
                                 Vista.imprimir("Introduzca el numero de la habitación cuya reserva desea cancelar");
@@ -181,15 +193,54 @@ public class App {
                                     opcion3_1 = scanner.nextInt();
                                     switch (opcion3_1) {
                                         case 1:
-
+                                        Vista.imprimir("Introduce el numero de la habitacion");
+                                        numeroHabitacion = scanner.nextInt();
+                                        Habitacion buscarPorNumero = gestorHotel.buscarHabitacion(numeroHabitacion);
+                                        Vista.imprimir(buscarPorNumero.toString());
                                             break;
                                         case 2:
-
+                                        Vista.imprimir("Introduce el tipo de habitacion");
+                                        Vista.imprimir("INDIVIDUAL");
+                                        Vista.imprimir("DOBLE");
+                                        Vista.imprimir("SUITE");
+                                        busqueda = scanner.next().toUpperCase();
+                                        try{
+                                            tipoHabitacion tipoBuscado = tipoHabitacion.valueOf(busqueda);
+                                            ArrayList<Habitacion> buscador = gestorHotel.buscarPorTipo(tipoBuscado);
+                                            Vista.imprimir("Habitaciones tipo "+tipoBuscado);
+                                            for(Habitacion habitacion : buscador){
+                                                Vista.imprimir(habitacion.toString());
+                                            }
+                                        }catch(IllegalArgumentException e){
+                                            Vista.imprimir("Tipo invalido. Los tipos permitidos son:");
+                                            Vista.imprimir("INDIVIDUAL");
+                                            Vista.imprimir("DOBLE");
+                                            Vista.imprimir("SUITE");
+                                        }
                                             break;
                                         case 3:
-
+                                        Vista.imprimir("Introduce el estado de  la habitacion");
+                                        Vista.imprimir("DISPONIBLE");
+                                        Vista.imprimir("OCUPADA");
+                                        Vista.imprimir("RESERVADA");
+                                        busqueda = scanner.next().toUpperCase();
+                                        try{
+                                            estadoHabitacion estadoBuscado = estadoHabitacion.valueOf(busqueda);
+                                            ArrayList<Habitacion> buscador = gestorHotel.buscarPorEstado(estadoBuscado);
+                                            Vista.imprimir("Habitaciones "+estadoBuscado+"S");
+                                            for (Habitacion habitacion : buscador){
+                                                Vista.imprimir(habitacion.toString());
+                                            }
+                                        } catch(IllegalArgumentException e){
+                                            Vista.imprimir("Estado invalido. Los estados permitidos son:");
+                                            Vista.imprimir("DISPONIBLE");
+                                            Vista.imprimir("OCUPADA");
+                                            Vista.imprimir("RESERVADA");
+                                        }
+                                   
                                             break;
-                                        case 4:
+                                        case 5:
+                                        Vista.imprimir("Cerrando Opciones de habitacion");
                                             break;
                                         default:
                                             Vista.imprimir("Opcion no valida");
@@ -207,15 +258,15 @@ public class App {
                     }
                     break;
                 case 3:
-                    Vista.imprimir("Adios");
+                    Vista.imprimir("Cerrando Sesion");
                     break;
 
                 default:
                     Vista.imprimir("Opcion no valida");
                     break;
             }
-            scanner.close();
         }
+        scanner.close();
 
     }
 

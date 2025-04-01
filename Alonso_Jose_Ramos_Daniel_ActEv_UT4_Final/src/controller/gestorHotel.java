@@ -4,17 +4,22 @@ import java.util.ArrayList;
 
 import model.Cliente;
 import model.Habitacion;
+import model.estadoHabitacion;
+import model.tipoHabitacion;
 import view.Vista;
 
 public class gestorHotel {
 
-    private ArrayList<Habitacion> habitaciones;
-    private ArrayList<Cliente> clientes;
+    public ArrayList<Habitacion> habitaciones;
+    public ArrayList<Cliente> clientes;
 
     public gestorHotel(){
         this.habitaciones = new ArrayList<>();
         this.clientes = new ArrayList<>();
     }
+
+
+
     public void annadirHabitacion(Habitacion habitacion) {
         habitaciones.add(habitacion);
     }
@@ -44,12 +49,34 @@ public class gestorHotel {
         return null;
     }
 
-    public Cliente buscarCliente(String dni) {
+    public ArrayList<Habitacion> buscarPorEstado(estadoHabitacion estadoBuscado){
+        ArrayList<Habitacion> resultado = new ArrayList<>();
+        for (Habitacion habitacion : habitaciones){
+            if (habitacion.getEstado() == estadoBuscado) {
+                resultado.add(habitacion);
+            }
+        }
+        return resultado;
+    }
+    public ArrayList<Habitacion> buscarPorTipo(tipoHabitacion tipoBuscado){
+        ArrayList<Habitacion> resultado = new ArrayList<>();
+        for (Habitacion habitacion : habitaciones){
+            if (habitacion.getTipo() == tipoBuscado) {
+                resultado.add(habitacion);
+            }
+        }
+        return resultado;
+    }
+    public Cliente buscarCliente(String id) {
         for (Cliente cliente : clientes) {
-            if (cliente.getIdCliente().equals(dni)) {
+            if (cliente.getIdCliente().equals(id)) {
                 return cliente;
             }
         }
         return null;
+    }
+
+    public int calculoPrecioHabitacion(Habitacion habitacion, Long dias) {
+        return (int) (habitacion.getPrecio() * dias);
     }
 }

@@ -11,7 +11,7 @@ public class Cliente {
 
 
     // Constructor
-    public Cliente(String idCliente, String nombreCliente, List<reserva> historialReserva, List<reserva> reservasCliente) {
+    public Cliente(String idCliente, String nombreCliente, List<reserva> reservasCliente, List<reserva> historialReserva) {
         this.idCliente = idCliente;
         this.nombreCliente = nombreCliente;
         this.historialReserva = historialReserva;
