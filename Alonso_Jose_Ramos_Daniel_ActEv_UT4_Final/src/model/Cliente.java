@@ -52,6 +52,20 @@ public class Cliente {
     }
 
     public String ClientetoString() {
-        return "ID: " + idCliente + " Nombre: " + nombreCliente + " Reservas: " + reservasCliente + " Historial: " + historialReserva;
+        StringBuilder sb = new StringBuilder();
+        sb.append("ID: ").append(idCliente).append(" Nombre: ").append(nombreCliente);
+        sb.append("\n");
+        sb.append("Reservas: ");
+        sb.append("\n");
+        for (reserva reserva : reservasCliente) {
+            sb.append(reserva.toString()).append("\n");
+        }
+        
+        sb.append("Historial: ");
+        for (reserva reserva : historialReserva) {
+            sb.append(reserva.toString()).append("\n");
+        }
+        
+        return sb.toString();
     }
 }
