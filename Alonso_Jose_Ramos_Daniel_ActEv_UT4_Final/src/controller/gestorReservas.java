@@ -1,16 +1,14 @@
 package controller;
 
 
+import java.time.LocalDate;
+import java.time.temporal.*;
+import java.util.Scanner;
 import model.Cliente;
 import model.Habitacion;
 import model.estadoHabitacion;
 import model.reserva;
 import view.Vista;
-
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Scanner;
-import java.time.temporal.*;
 
 
 public class gestorReservas {
@@ -31,7 +29,7 @@ public class gestorReservas {
         if (fechaCheckIn.isAfter(LocalDate.now()) || fechaCheckIn.isEqual(LocalDate.now())) {
             reservaCliente2.setFechaCheckIn(fechaCheckIn);
         } else {
-            Vista.imprimir("La fecha de check-in no puede ser posterior a la fecha actual");
+            Vista.imprimir("La fecha de check-in no puede ser anterior a la fecha actual");
             return;
         }
 
@@ -44,7 +42,7 @@ public class gestorReservas {
         LocalDate fechaCheckOut = fechas.preguntarFecha(dia_out, mes_out, anio_out);
 
         if (fechaCheckOut.isBefore(fechaCheckIn) || fechaCheckOut.isEqual(fechaCheckIn)) {
-            Vista.imprimir("La fecha de check-out no puede ser anterior a la fecha de check-in. Se aplicará el máx de dias");
+            Vista.imprimir("La fecha de check-out no puede ser anterior a la fecha de check-in. Se aplicará el máx de dias a la reserva");
             fechas.setFechaCheckOutPorDefecto(reservaCliente2);
         } else {
             reservaCliente2.setFechaCheckOut(fechaCheckOut);
@@ -54,6 +52,8 @@ public class gestorReservas {
         reservaCliente2.setTotalReserva(habitacion.getPrecio() * dias);
         cliente.getReservasCliente().add(reservaCliente2);
         habitacion.setEstado(estadoHabitacion.RESERVADA);
+        idContadorReservas++;
+        System.out.println("Reserva realizada con exito");
     }
 
     public void cancelarReserva(Habitacion cancelarReserva) {
@@ -85,7 +85,7 @@ public class gestorReservas {
     }
 
     public boolean controlMaxReservas(Cliente cliente) {
-        if (cliente.getReservasCliente().size() >= 3) {
+        if (cliente.getReservasCliente().size() <= 3) {
             return false;
         }
         return true;

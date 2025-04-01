@@ -1,16 +1,23 @@
 package app;
 
-import java.util.*;
-import view.Vista;
 import controller.gestorHotel;
 import controller.gestorReservas;
+import java.time.LocalDate;
+import java.util.*;
 import model.Cliente;
 import model.Habitacion;
-import model.reserva;
 import model.estadoHabitacion;
+import model.reserva;
 import model.tipoHabitacion;
-import java.time.LocalDate;
-//Tareas a hacer: crear metodos de busqueda de habitaciones
+import view.Vista;
+
+/*
+ La condición de si tiene 3 reservas no funciona
+ Cambiar la manera que se presenta la reserva al finalizar su creación
+ En la cancelación de la reserva no se elimina de la lista de reservas la reserva
+ * 
+ */
+
 public class App {
     public static void main(String[] args) throws Exception {
 
@@ -72,8 +79,8 @@ public class App {
         Cliente cliente2 = new Cliente("2", "Alba", reservasCliente2, historialCliente2);
 
         reserva reservaCliente1_1 = new reserva(1, LocalDate.of(2025, 6, 1), LocalDate.of(2025, 7, 1), precioSuite, cliente1, habitacion15);
-        reserva reservaCliente1_2 = new reserva(2, null, null, precioDoble, cliente1, habitacion14);
-        reserva reservaCliente1_3 = new reserva(3, null, null, precioIndividual, cliente1, habitacion13);
+        reserva reservaCliente1_2 = new reserva(2, LocalDate.of(2025, 4, 4), LocalDate.of(2025, 5, 4), precioDoble, cliente1, habitacion14);
+        reserva reservaCliente1_3 = new reserva(3, LocalDate.of(2025, 7, 2), LocalDate.of(2025, 9, 2), precioIndividual, cliente1, habitacion13);
 
         reservasCliente1.add(reservaCliente1_1);
         reservasCliente1.add(reservaCliente1_2);
@@ -239,7 +246,7 @@ public class App {
                                         }
                                    
                                             break;
-                                        case 5:
+                                        case 4:
                                         Vista.imprimir("Cerrando Opciones de habitacion");
                                             break;
                                         default:
