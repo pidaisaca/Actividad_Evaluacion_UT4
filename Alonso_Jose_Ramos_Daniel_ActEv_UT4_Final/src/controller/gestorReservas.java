@@ -85,7 +85,7 @@ public class gestorReservas {
     }
 
     public boolean controlMaxReservas(Cliente cliente) {
-        if (cliente.getReservasCliente().size() <= 3) {
+        if (cliente.getReservasCliente().size() < 3) {
             return false;
         }
         return true;
