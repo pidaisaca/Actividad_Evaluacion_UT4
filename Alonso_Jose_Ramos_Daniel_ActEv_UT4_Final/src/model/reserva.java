@@ -10,12 +10,14 @@ public class reserva {
     private LocalDate fechaCheckOut;
     private double totalReserva;
     private Habitacion habitacionReservada;
+    private Cliente cliente;
 
-    public reserva(int idReserva, LocalDate fechaCheckIn, LocalDate fechaCheckOut, double totalReserva, Habitacion habitacionReservada) {
+    public reserva(int idReserva, LocalDate fechaCheckIn, LocalDate fechaCheckOut, double totalReserva, Cliente cliente, Habitacion habitacionReservada) {
         this.idReserva = idReserva;
         this.fechaCheckIn = fechaCheckIn;
         this.fechaCheckOut = fechaCheckOut;
         this.totalReserva = totalReserva;
+        this.cliente = cliente;
         this.habitacionReservada = habitacionReservada;
     }
 
@@ -54,6 +56,18 @@ public void setTotalReserva(double totalReserva) {
 
 public Habitacion getHabitacionReservada() {
     return habitacionReservada;
+}
+
+public void setHabitacionReservada(Habitacion habitacionReservada) {
+    this.habitacionReservada = habitacionReservada;
+}
+
+public Cliente getCliente() {
+    return cliente;
+}
+
+public void setCliente(Cliente cliente) {
+    this.cliente = cliente;
 }
 
 }

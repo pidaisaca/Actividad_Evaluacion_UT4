@@ -68,16 +68,16 @@ public class App {
         List<reserva> historialCliente1 = new ArrayList<reserva>();
         List<reserva> historialCliente2 = new ArrayList<reserva>();
 
-        reserva reservaCliente1_1 = new reserva(1, null, null, precioSuite, habitacion15);
-        reserva reservaCliente1_2 = new reserva(2, null, null, precioDoble, habitacion14);
-        reserva reservaCliente1_3 = new reserva(3, null, null, precioIndividual, habitacion13);
+        Cliente cliente1 = new Cliente("1", "Javier", reservasCliente1, historialCliente1);
+        Cliente cliente2 = new Cliente("2", "Alba", reservasCliente2, historialCliente2);
+
+        reserva reservaCliente1_1 = new reserva(1, LocalDate.of(2025, 6, 1), LocalDate.of(2025, 7, 1), precioSuite, cliente1, habitacion15);
+        reserva reservaCliente1_2 = new reserva(2, null, null, precioDoble, cliente1, habitacion14);
+        reserva reservaCliente1_3 = new reserva(3, null, null, precioIndividual, cliente1, habitacion13);
 
         reservasCliente1.add(reservaCliente1_1);
         reservasCliente1.add(reservaCliente1_2);
         reservasCliente1.add(reservaCliente1_3);
-
-        Cliente cliente1 = new Cliente("1", "Javier", reservasCliente1, historialCliente1);
-        Cliente cliente2 = new Cliente("2", "Alba", reservasCliente2, historialCliente2);
 
         gestorHotel.annadirCliente(cliente1);
         gestorHotel.annadirCliente(cliente2);
@@ -112,10 +112,16 @@ public class App {
                                 gestorHotel.listarClientes();
                                 break;
                             case 2:
-
+                                Vista.imprimir("¿De que cliente desea ver sus reservas? Escriba su ID");
+                                String id_reservas = scanner.next();
+                                Cliente clienteReservas = gestorHotel.buscarCliente(id_reservas);
+                                gestorReservas.reservasActivas(clienteReservas);
                                 break;
                             case 3:
-
+                                Vista.imprimir("¿De que cliente desea ver sus reservas? Escriba su ID");
+                                String id_historial = scanner.next();
+                                Cliente clienteHistorial = gestorHotel.buscarCliente(id_historial);
+                                gestorReservas.historialReserva(clienteHistorial);
                                 break;
                             case 4:
 
@@ -152,15 +158,19 @@ public class App {
                                 break;
                                }
                                 Vista.imprimir(
-                                        "¿Que cliente desea reservar la habitacion? Escribe el numero del cliente");
+                                "¿Que cliente desea reservar la habitacion? Escribe el numero del cliente");
                                 String numeroCliente = scanner.next();
                                 Cliente cliente = gestorHotel.buscarCliente(numeroCliente);
                                 if (cliente == null) {
                                     Vista.imprimir("Cliente no encontrado");
                                     break;
                                 }
-                                gestorReservas.controlMaxReservas(cliente);
-                            //     gestorReservas.crearReserva(cliente, habitacionReservada);
+                                if (gestorReservas.controlMaxReservas(cliente)) {
+                                    Vista.imprimir("El cliente " + cliente.getNombreCliente() + " ha superado el maximo de reservas permitidas.");
+                                    break;
+                                } else {
+                                    gestorReservas.crearReserva(cliente, habitacionReservada);
+                                }
                                 break;
                             case 3:
                                 Vista.imprimir("Introduzca el numero de la habitación cuya reserva desea cancelar");

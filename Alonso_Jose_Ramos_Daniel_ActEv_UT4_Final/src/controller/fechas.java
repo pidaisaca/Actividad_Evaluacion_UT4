@@ -23,16 +23,28 @@ public class fechas {
      * debido a la restricción de 90 dias
      * @param reserva la reserva a la que se le establecer la fecha de check-out.
      */
-    public void setFechaCheckOut(reserva reserva) {
+    public void setFechaCheckOutPorDefecto(reserva reserva) {
         LocalDate fechaCheckOut = reserva.getFechaCheckIn().plusDays(90);
         reserva.setFechaCheckOut(fechaCheckOut);
     }
 
+    public void setFechaCheckOut(reserva reserva, LocalDate fechaCheckOut) {
+        reserva.setFechaCheckOut(fechaCheckOut);
+    }
+
+    /**
+     * Crea una fecha a partir de los 
+     * parametros escritos por el usuario
+     * @param dia el día del mes
+     * @param mes el mes del año
+     * @param anio el año
+     * @return un objeto LocalDate que representa la fecha especificada
+     */
+
     public LocalDate preguntarFecha(int dia, int mes, int anio) {
-        
         LocalDate fechaReserva = LocalDate.of(anio, mes, dia);
         return fechaReserva;
     }
 
-
 }
+

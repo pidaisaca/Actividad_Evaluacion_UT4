@@ -10,8 +10,8 @@ import view.Vista;
 
 public class gestorHotel {
 
-    private ArrayList<Habitacion> habitaciones;
-    private ArrayList<Cliente> clientes;
+    public ArrayList<Habitacion> habitaciones;
+    public ArrayList<Cliente> clientes;
 
     public gestorHotel(){
         this.habitaciones = new ArrayList<>();
@@ -67,12 +67,16 @@ public class gestorHotel {
         }
         return resultado;
     }
-    public Cliente buscarCliente(String dni) {
+    public Cliente buscarCliente(String id) {
         for (Cliente cliente : clientes) {
-            if (cliente.getIdCliente().equals(dni)) {
+            if (cliente.getIdCliente().equals(id)) {
                 return cliente;
             }
         }
         return null;
+    }
+
+    public int calculoPrecioHabitacion(Habitacion habitacion, Long dias) {
+        return (int) (habitacion.getPrecio() * dias);
     }
 }
