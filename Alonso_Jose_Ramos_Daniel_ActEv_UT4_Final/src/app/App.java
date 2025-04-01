@@ -10,7 +10,6 @@ import model.estadoHabitacion;
 import model.reserva;
 import model.tipoHabitacion;
 import view.Vista;
-
 /*
  La condición de si tiene 3 reservas no funciona
  Cambiar la manera que se presenta la reserva al finalizar su creación
@@ -19,6 +18,7 @@ import view.Vista;
  */
 
 public class App {
+
     public static void main(String[] args) throws Exception {
 
         gestorHotel gestorHotel = new gestorHotel();
