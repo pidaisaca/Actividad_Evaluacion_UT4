@@ -4,6 +4,7 @@ El sistema debe permitir gestionar habitaciones, clientes y reservas.
 
 # Estructura del proyecto
 
+```
 src/
 ├
 │---├── modelo/
@@ -17,7 +18,7 @@ src/
 └── .gitignore
 └── LICENSE
 └── README.md
-
+```
 
 ## Dependency Management
 
