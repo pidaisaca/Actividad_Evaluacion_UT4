@@ -10,7 +10,7 @@ El sistema debe permitir gestionar habitaciones, clientes y reservas.
     - https://www.baeldung.com/java-8-date-time-intro
 
 
-### Pre-requisitos para su ejecución 📋
+## Pre-requisitos para su ejecución 📋
 
 Entorno de desarrollo Visual Studio Code<br\>
 jdk 23  
