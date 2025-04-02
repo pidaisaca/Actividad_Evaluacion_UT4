@@ -82,9 +82,13 @@ public class App {
         reserva reservaCliente1_2 = new reserva(2, LocalDate.of(2025, 4, 4), LocalDate.of(2025, 5, 4), precioDoble, cliente1, habitacion14);
         reserva reservaCliente1_3 = new reserva(3, LocalDate.of(2025, 7, 2), LocalDate.of(2025, 9, 2), precioIndividual, cliente1, habitacion13);
 
+        reserva reservaCliente1_4 = new reserva(50, LocalDate.of(2024, 6, 1), LocalDate.of(2024, 7, 1), precioSuite, cliente1, habitacion15);
+
         reservasCliente1.add(reservaCliente1_1);
         reservasCliente1.add(reservaCliente1_2);
         reservasCliente1.add(reservaCliente1_3);
+
+        historialCliente1.add(reservaCliente1_4);
 
         gestorHotel.annadirCliente(cliente1);
         gestorHotel.annadirCliente(cliente2);
@@ -125,7 +129,7 @@ public class App {
                                 gestorReservas.reservasActivas(clienteReservas);
                                 break;
                             case 3:
-                                Vista.imprimir("¿De que cliente desea ver sus reservas? Escriba su ID");
+                                Vista.imprimir("¿De que cliente desea ver su historial? Escriba su ID");
                                 String id_historial = scanner.next();
                                 Cliente clienteHistorial = gestorHotel.buscarCliente(id_historial);
                                 gestorReservas.historialReserva(clienteHistorial);
@@ -180,14 +184,19 @@ public class App {
                                 }
                                 break;
                             case 3:
-                                Vista.imprimir("Introduzca el numero de la habitación cuya reserva desea cancelar");
-                                numeroHabitacion = scanner.nextInt();
-                                Habitacion cancelarReserva = gestorHotel.buscarHabitacion(numeroHabitacion);
-                                if (cancelarReserva == null){
-                                    Vista.imprimir("Habitacion no encontrada");
-                                    break;
-                                }
-                                gestorReservas.cancelarReserva(cancelarReserva);
+                                scanner.nextLine();
+                                Vista.imprimir("¿Que cliente desea cancelar la reserva? Escribe el numero de ID del cliente");
+                                
+                                String numeroClienteCancelar = scanner.nextLine();
+                                Cliente clienteCancelar = gestorHotel.buscarCliente(numeroClienteCancelar);
+                                System.out.println("Nombre: " + clienteCancelar.getNombreCliente());
+                               
+                                Vista.imprimir("¿Que reserva desea cancelar? Escribe el numero de ID de la reserva");
+                                int id_reserva = scanner.nextInt();
+                                scanner.nextLine();
+                                
+                                gestorReservas.cancelarReserva(clienteCancelar, id_reserva);
+                                
                                 break;
                             case 4:
                                 int opcion3_1 = 0;

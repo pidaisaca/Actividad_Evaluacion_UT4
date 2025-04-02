@@ -3,12 +3,13 @@ package controller;
 
 import java.time.LocalDate;
 import java.time.temporal.*;
-import java.util.Scanner;
+
 import model.Cliente;
 import model.Habitacion;
 import model.estadoHabitacion;
 import model.reserva;
 import view.Vista;
+import java.util.*;
 
 
 public class gestorReservas {
@@ -57,13 +58,24 @@ public class gestorReservas {
         Vista.imprimir("La habitación estará reservada desde "+reservaCliente2.getFechaCheckIn()+" hasta "+reservaCliente2.getFechaCheckOut());
     }
 
-    public void cancelarReserva(Habitacion cancelarReserva) {
-        if(cancelarReserva.getEstado() == estadoHabitacion.RESERVADA){
-            cancelarReserva.setEstado(estadoHabitacion.DISPONIBLE);
-            Vista.imprimir("Se ha cancelado la reserva. La habitacion "+cancelarReserva.getNum()+" ahora está disponible");
+    public void cancelarReserva(Cliente clienteCancelar, int idReserva) {
+
+        gestorHotel gestorHotel = new gestorHotel();
+
+        List<reserva> reservasClienteCancelar = clienteCancelar.getReservasCliente();
+        boolean reservaEncontrada = false;
+        for (int i = 0; i < reservasClienteCancelar.size(); i++) {
+            if (reservasClienteCancelar.get(i).getIdReserva() == idReserva) {
+                Habitacion habitacionCancelar = reservasClienteCancelar.get(i).getHabitacionReservada();
+                habitacionCancelar.setEstado(estadoHabitacion.DISPONIBLE);
+                reservasClienteCancelar.remove(i);
+                Vista.imprimir("Reserva cancelada para el cliente " + clienteCancelar.getNombreCliente()+ " en la habitación " + habitacionCancelar.getNum());
+                reservaEncontrada = true;
+                break;
+            }
         }
-        else{
-            Vista.imprimir("La habitacion no se encuentra reservada");
+        if (!reservaEncontrada) {
+            Vista.imprimir("Reserva no encontrada");
         }
     }
 
