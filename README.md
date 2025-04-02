@@ -132,7 +132,7 @@ Comprobemos que la reserva se a guardado
 
 
 ## Autores ✒️
-Daniel Ramos Montoya<br\>
+Daniel Ramos Montoya  
 José Antonio Alonso Navarro
 
 ## Dependency Management
